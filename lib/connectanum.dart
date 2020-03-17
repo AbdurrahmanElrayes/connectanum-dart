@@ -23,4 +23,5 @@ export 'src/message/unregistered.dart';
 export 'src/protocol/session.dart';
 export 'src/transport/abstract_transport.dart';
 export 'src/transport/websocket/websocket_transport_serialization.dart';
-export 'src/transport/websocket/websocket_transport_io.dart';
+export 'src/transport/websocket/websocket_transport_none.dart'
+           'src/transport/websocket/websocket_transport_io.dart';
