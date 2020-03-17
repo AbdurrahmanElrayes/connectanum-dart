@@ -30,10 +30,14 @@ class WebSocketTransport extends AbstractTransport {
   bool get isOpen {
     return _socket.readyState == WebSocket.open;
   }
-
+  
+  SecureSocket _ss;
   @override
   Future<void> open() async {
-    _socket = await WebSocket.connect(_url, protocols: [_serializerType]);
+    _ss = await SecureSocket.connect(_url, 8087,
+        onBadCertificate: (X509Certificate cer) => true);
+    _socket = await WebSocket.fromUpgradedSocket(_ss,
+        protocol: _serializerType, serverSide: false);
     onDisconnect = Completer();
   }
 
